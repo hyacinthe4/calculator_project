@@ -1,0 +1,71 @@
+<!-- calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="calculator">
+  <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="themeSwitcher">
+        <span class="slider round"></span>
+      </label>
+      <span>Dark Mode</span>
+    </div>
+    <div class="display" style="position:relative;">
+      <input type="text" id="display" readonly />
+      <!-- Position live result inside the input, bottom left -->
+      <div class="live-result" id="liveResult" style="
+        position: absolute;
+        left: 8px;
+        bottom: 6px;
+        font-size: 0.9em;
+        color: #888;
+        pointer-events: none;
+        background: transparent;
+        z-index: 2;
+      "></div>
+    </div>
+          <div class="display-time" style="flex: 1;">
+        <input type="text" id="timeDisplay" readonly />
+      </div>
+    <!-- Red buttons in a vertical circle group to the left of time display -->
+    <div style="display: flex; align-items: center; margin-top: 10px;">
+      <div class="red-btn-group" style="display: flex; flex-direction:row; gap: 10px;">
+        <button class="btn red circle-btn" id="backspace">⌫</button>
+        <button class="btn red circle-btn">C</button>
+      </div>
+
+    </div>
+    <br>
+    <div class="buttons">
+      <!-- Row-wise buttons -->
+      <button class="btn orange">7</button>
+      <button class="btn orange">8</button>
+      <button class="btn orange">9</button>
+      <button class="btn green">÷</button>
+      <button class="btn orange">4</button>
+      <button class="btn orange">5</button>
+      <button class="btn orange">6</button>
+      <button class="btn green">×</button>
+      <button class="btn orange">1</button>
+      <button class="btn orange">2</button>
+      <button class="btn orange">3</button>
+      <button class="btn green">−</button>
+      <button class="btn green">%</button>
+      <button class="btn orange">0</button>
+      <button class="btn green">.</button>
+      <button class="btn green">+</button>
+      <button class="btn green">=</button>
+      
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
