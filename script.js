@@ -146,7 +146,7 @@ themeSwitcher.addEventListener('change', () => {
   document.body.classList.toggle('dark', themeSwitcher.checked);
 });
 
-// Optional: Remember theme in local storage
+
 window.addEventListener('DOMContentLoaded', () => {
   const darkMode = localStorage.getItem('darkMode') === 'true';
   document.body.classList.toggle('dark', darkMode);
@@ -158,6 +158,34 @@ themeSwitcher.addEventListener('change', () => {
   document.body.classList.toggle('dark', isDark);
   localStorage.setItem('darkMode', isDark);
 });
+
+const historyPanel = document.getElementById("historyPanel");
+const historyToggle = document.getElementById("historyToggle");
+const historyList = document.getElementById("historyList");
+
+let historyData = [];
+
+// Toggle panel visibility
+historyToggle.addEventListener("click", () => {
+  historyPanel.classList.toggle("show");
+});
+
+// Add to history on equals
+equals.addEventListener("click", () => {
+  try {
+    const result = eval(expression);
+    if (expression) {
+      const entry = `${expression} = ${result}`;
+      historyData.push(entry);
+      const li = document.createElement("li");
+      li.textContent = entry;
+      historyList.appendChild(li);
+    }
+  } catch {
+    // Skip on error
+  }
+});
+
 
 // Show current time in the timeDisplay input
 function updateTime() {

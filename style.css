@@ -101,6 +101,132 @@ body {
   align-items: center;
   height: 100vh;
   background: linear-gradient(145deg, #dfe9f3, #ffffff);
+  /* Add relative positioning for background animation */
+  position: relative;
+  overflow: hidden;
+}
+/* Top-left history button */
+.top-bar {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  position: relative;
+}
+
+.history-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+.history-btn:hover {
+  transform: scale(1.2);
+}
+
+/* History panel styling */
+.history-panel {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100%;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.history-panel.show {
+  left: 0;
+}
+
+.history-panel h3 {
+  margin-top: 0;
+}
+
+.history-panel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history-panel li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #444;
+}
+
+/* Dark mode support */
+body.dark .history-panel {
+  background-color: #1f1f1f;
+  color: #ccc;
+  border-color: #444;
+}
+
+body.dark .history-panel li {
+  color: #ddd;
+}
+
+body.dark .history-btn {
+  color: #ccc;
+}
+
+/* Animated math formulas background */
+.math-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18; /* Balanced opacity for clarity */
+  font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.math-formula {
+  position: absolute;
+  color: #888;
+  font-size: 2.2em;
+  white-space: nowrap;
+  animation: floatMath 18s linear infinite;
+  user-select: none;
+  filter: blur(0.2px);
+}
+
+.math-formula:nth-child(1) {
+  top: 10%; left: 5%;
+  animation-delay: 0s;
+  font-size: 2.5em;
+}
+.math-formula:nth-child(2) {
+  top: 30%; left: 2%;
+  animation-delay: 4s;
+  font-size: 2em;
+}
+.math-formula:nth-child(3) {
+  top: 60%; left:10%;
+  animation-delay: 8s;
+  font-size: 2.3em;
+}
+.math-formula:nth-child(4) {
+  top: 80%; left: 70%;
+  animation-delay: 12s;
+  font-size: 2.1em;
+}
+.math-formula:nth-child(5) {
+  top: 50%; left: 70%;
+  animation-delay: 2s;
+  font-size: 2.4em;
+}
+
+@keyframes floatMath {
+  0% { transform: translateY(0) scale(1) rotate(-2deg);}
+  50% { transform: translateY(-30px) scale(1.05) rotate(2deg);}
+  100% { transform: translateY(0) scale(1) rotate(-2deg);}
 }
 
 .calculator {
@@ -248,5 +374,16 @@ width: 50%;
 
   .display input {
     font-size: 20px;
+  }
+}
+
+/* Show math formulas only on desktop */
+.math-bg {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .math-bg {
+    display: none;
   }
 }

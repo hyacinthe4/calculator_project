@@ -4,10 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Responsive Calculator</title>
+  <title>Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <div class="math-bg">
+  <div class="math-formula">π ≈ 3.14159</div>
+  <div class="math-formula">x = {-b ± √(b²-4ac)}/2a</div>
+  <div class="math-formula">E = mc²</div>
+  <div class="math-formula">√2 ≈ 1.414</div>
+  <div class="math-formula">sin(θ) = Opp/Hyp</div>
+</div>
+
+<div class="top-bar">
+  <button id="historyToggle" class="history-btn" title="View History">🕘</button>
+</div>
+<div id="historyPanel" class="history-panel">
+  <h3>History</h3>
+  <ul id="historyList"></ul>
+</div>
+
 
   <div class="calculator">
   <div class="theme-toggle">
@@ -65,6 +81,7 @@
       
     </div>
   </div>
+
 
   <script src="script.js"></script>
 </body>
