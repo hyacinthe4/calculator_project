@@ -19,7 +19,11 @@ buttons.forEach((button) => {
       display.value = expression;
       // Update live result
       try {
-        const result = eval(expression.replace(/×/g, "*").replace(/÷/g, "/").replace(/%/g, "/100"));
+        const result = eval(expression
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/%/g, "/100")
+          .replace(/−/g, "-"));
         if (!isNaN(result) && expression) {
           liveResult.textContent = "= " + result;
         } else {
@@ -40,8 +44,22 @@ buttons.forEach((button) => {
     else if (value === "=") {
       try {
         // Replace custom operators and evaluate
-        display.value = eval(expression.replace(/×/g, "*").replace(/÷/g, "/").replace(/%/g, "/100"));
+        const result = eval(expression
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/%/g, "/100")
+          .replace(/−/g, "-"));
+        display.value = result;
         display.classList.add("highlight"); // Highlight result
+
+        // Add to history
+        if (expression) {
+          const entry = `${expression} = ${result}`;
+          historyData.push(entry);
+          const li = document.createElement("li");
+          li.textContent = entry;
+          historyList.prepend(li); // Add to top
+        }
       } catch {
         display.value = "Error"; // Show error if evaluation fails
       }
@@ -61,7 +79,11 @@ buttons.forEach((button) => {
 
       // Try to show live result as user types
       try {
-        const result = eval(expression.replace(/×/g, "*").replace(/÷/g, "/").replace(/%/g, "/100"));
+        const result = eval(expression
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/%/g, "/100")
+          .replace(/−/g, "-"));
         if (!isNaN(result)) {
           liveResult.textContent = "= " + result; // Show live result
         } else {
@@ -85,18 +107,23 @@ document.addEventListener("keydown", (event) => {
   if (key === "/") key = "÷";
   if (key === "Backspace") key = "⌫";
   if (key === "%") key = "%";
+  if (key === "-") key = "−"; 
 
   // Only process valid keys (numbers, operators, C, =, ., %, ⌫)
   if (
     /[0-9]/.test(key) ||
-    ["+", "-", "×", "÷", ".", "C", "=", "%", "⌫"].includes(key)
+    ["+", "−", "×", "÷", ".", "C", "=", "%", "⌫"].includes(key)
   ) {
     // Simulate button click logic
     if (key === "⌫") {
       expression = expression.slice(0, -1);
       display.value = expression;
       try {
-        const result = eval(expression.replace(/×/g, "*").replace(/÷/g, "/").replace(/%/g, "/100"));
+        const result = eval(expression
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/%/g, "/100")
+          .replace(/−/g, "-"));
         if (!isNaN(result) && expression) {
           liveResult.textContent = "= " + result;
         } else {
@@ -112,7 +139,11 @@ document.addEventListener("keydown", (event) => {
       display.classList.remove("highlight");
     } else if (key === "=") {
       try {
-        display.value = eval(expression.replace(/×/g, "*").replace(/÷/g, "/").replace(/%/g, "/100"));
+        display.value = eval(expression
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/%/g, "/100")
+          .replace(/−/g, "-"));
         display.classList.add("highlight");
       } catch {
         display.value = "Error";
@@ -127,7 +158,11 @@ document.addEventListener("keydown", (event) => {
       expression += key;
       display.value = expression;
       try {
-        const result = eval(expression.replace(/×/g, "*").replace(/÷/g, "/").replace(/%/g, "/100"));
+        const result = eval(expression
+          .replace(/×/g, "*")
+          .replace(/÷/g, "/")
+          .replace(/%/g, "/100")
+          .replace(/−/g, "-"));
         if (!isNaN(result)) {
           liveResult.textContent = "= " + result;
         } else {
@@ -170,21 +205,7 @@ historyToggle.addEventListener("click", () => {
   historyPanel.classList.toggle("show");
 });
 
-// Add to history on equals
-equals.addEventListener("click", () => {
-  try {
-    const result = eval(expression);
-    if (expression) {
-      const entry = `${expression} = ${result}`;
-      historyData.push(entry);
-      const li = document.createElement("li");
-      li.textContent = entry;
-      historyList.appendChild(li);
-    }
-  } catch {
-    // Skip on error
-  }
-});
+
 
 
 // Show current time in the timeDisplay input
@@ -192,10 +213,9 @@ function updateTime() {
   const timeInput = document.getElementById('timeDisplay');
   if (timeInput) {
     const now = new Date();
-    // Format as HH:MM:SS
     const timeStr = now.toLocaleTimeString();
     timeInput.value = timeStr;
   }
 }
 setInterval(updateTime, 1000);
-updateTime(); // Initial call
+updateTime();

@@ -113,13 +113,21 @@ body {
   position: relative;
 }
 
+.calc-top-bar {
+  position: relative;
+  z-index: 1100;
+  margin-bottom: 8px;
+}
+
 .history-btn {
-  font-size: 20px;
+  font-size: 22px;
   background: none;
   border: none;
   cursor: pointer;
   color: #333;
   transition: transform 0.3s ease;
+  margin-left: 0;
+  top:20px
 }
 .history-btn:hover {
   transform: scale(1.2);
@@ -127,22 +135,26 @@ body {
 
 /* History panel styling */
 .history-panel {
-  position: fixed;
-  top: 0;
-  left: -320px;
-  width: 300px;
-  height: 100%;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 270px;
+  height: 340px;
   background-color: #f9f9f9;
-  border-right: 1px solid #ddd;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 20px 16px 16px 16px;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.13);
   overflow-y: auto;
-  transition: left 0.3s ease;
-  z-index: 1000;
+  transition: left 0.3s ease, opacity 0.3s;
+  z-index: 1200;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .history-panel.show {
-  left: 0;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .history-panel h3 {
@@ -335,7 +347,7 @@ width: 50%;
 }
 
 .circle-btn {
-    position:relative;
+  
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -348,7 +360,8 @@ width: 50%;
   color: #fff;
   border: none;
   transition: background 0.3s;
-  margin-right: 250px;
+  margin-top: 10px;
+  display:block;
 }
 
 .circle-btn:hover {
@@ -362,6 +375,13 @@ width: 50%;
   }
 }
 
+@media(max-width:400px){
+  .circle-btn {
+   
+    top: 10px;
+    margin-right:20px;
+  }
+}
 @media (max-width: 400px) {
   .calculator {
     width: 90%;
@@ -385,5 +405,11 @@ width: 50%;
 @media (max-width: 900px) {
   .math-bg {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .history-panel {
+    display: block;
   }
 }

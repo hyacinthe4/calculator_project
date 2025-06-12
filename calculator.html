@@ -16,17 +16,15 @@
   <div class="math-formula">sin(θ) = Opp/Hyp</div>
 </div>
 
-<div class="top-bar">
-  <button id="historyToggle" class="history-btn" title="View History">🕘</button>
-</div>
-<div id="historyPanel" class="history-panel">
-  <h3>History</h3>
-  <ul id="historyList"></ul>
-</div>
-
-
   <div class="calculator">
-  <div class="theme-toggle">
+  <div class="calc-top-bar" style="display: flex; align-items: center; justify-content: flex-start;">
+    <button id="historyToggle" class="history-btn" title="View History">🕘</button>
+  </div>
+  <div id="historyPanel" class="history-panel">
+    <h3>History</h3>
+    <ul id="historyList"></ul>
+  </div>
+    <div class="theme-toggle">
       <label class="switch">
         <input type="checkbox" id="themeSwitcher">
         <span class="slider round"></span>
@@ -77,7 +75,7 @@
       <button class="btn orange">0</button>
       <button class="btn green">.</button>
       <button class="btn green">+</button>
-      <button class="btn green">=</button>
+      <button class="btn green" style="grid-column: 1 / -1; width: 100%;">=</button>
       
     </div>
   </div>
